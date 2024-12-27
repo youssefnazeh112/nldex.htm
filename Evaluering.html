@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تقييم المنتج</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#"> </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="booking.html">booking</a></li>
+          <li><a href="Contact Us.html">Contact Us</a></li>
+          <li><a href="Evaluering.html">Evaluering</a></li>
+          <li><a href="#">Join Now</a></li>
+        </ul>
+        <div class="nav__btns">
+          <button class="btn">Join Now</button>
+        </div>
+      </nav>
+      <div class="section__container header__container" id="home">
+        <div class="header__content">
+          <h1>WELCOM TO CAR</h1>
+          <h2>SERVICE CENTER</h2>
+          <p>
+            Welcome to our Car Service Center, where we offer top-notch services
+            to ensure your vehicle runs smoothly and efficiently. Our team of
+            skilled technicians is dedicated to providing expert care for all
+            types of cars. Whether you need routine maintenance, urgent repairs,
+            or specialized services, we’ve got you covered. We prioritize
+            customer satisfaction and work hard to provide fast, reliable, and
+            affordable solutions. Visit us today, and let us take care of your
+            car like it’s our own!
+          </p>
+          <div class="header__btn">
+            <button class="btn">Explore More</button>
+          </div>
+        </div>
+        <div class="header__image">
+          <img src="/assets/33.png" alt="header" />
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>Product Rating</h1>
+      <div class="stars">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+
+      <div class="rating-value">
+        <p>Evaluation: <span id="rating">0</span> of 5</p>
+      </div>
+
+      <textarea id="review" placeholder="" rows="4" cols="50"></textarea>
+      <br />
+      <button onclick="submitReview()">إرسال</button>
+    </div>
+
+    <script>
+      const stars = document.querySelectorAll(".star");
+      const ratingDisplay = document.getElementById("rating");
+      let currentRating = 0;
+
+      // إضافة تأثير عند الضغط على النجوم
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          currentRating = star.getAttribute("data-value");
+          updateStars();
+        });
+      });
+
+      // تحديث حالة النجوم بناءً على التقييم
+      function updateStars() {
+        stars.forEach((star) => {
+          if (star.getAttribute("data-value") <= currentRating) {
+            star.classList.add("selected");
+          } else {
+            star.classList.remove("selected");
+          }
+        });
+        ratingDisplay.textContent = currentRating;
+      }
+
+      // إرسال التقييم والرأي
+      function submitReview() {
+        const reviewText = document.getElementById("review").value;
+
+        if (currentRating === 0) {
+          alert("يرجى تحديد التقييم أولاً");
+          return;
+        }
+
+        if (reviewText === "") {
+          alert("يرجى إضافة رأيك");
+          return;
+        }
+
+        // هنا يمكن إرسال التقييم والرأي إلى الخادم أو حفظه في قاعدة بيانات
+        alert(`تم إرسال التقييم: ${currentRating} من 5 \nرأيك: ${reviewText}`);
+      }
+
+      // ملف script.js
+
+      function toggleMenu() {
+        const menu = document.getElementById("dropdown-menu");
+        menu.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>
